@@ -1,44 +1,67 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# React With React Router Template
+Created this project as the seed project for any React project using React-Router for the navigation. Its structured to support the basic architecture often required in a new project. 
 
-## Available Scripts
+## Pre-requisite 
+Make sure you have install NodeJS and NPM. 
 
-In the project directory, you can run:
+## Project structure 
+```bash
+├── public 
+├── src
+|   └── assets                  #folders to store custom fonts needed to compile sass
+|   └── components              #where all the react components are located
+|   └── pages                   #where all the individual pages/screens are located
+|   └── styles                  #where all the sass are stored and compiled into a single css
+|       └── sass                #where all the sass are stored and compiled into a single css
+|           └── abstracts       #contains sass files that are used by the other sass files
+|           └── base            #contains style that can be applied throughout the entire application
+|           └── components      #contains style for the particular react components
+|           └── layouts         #contains layout such as grid or header for the pages
+|           └── pages           #contains style for the particular screen/page
+|   └── App.js                  #The first component to be loaded with route defined in it
+|   └── index.js                #The entry point of this application
+├── .env                        #Contains the default environment variables
+├── .env.prod                   #Contains the production environment variables
+├── .env.uat                    #Contains the uat environment variables
+├── .gitignore                  #Define the files to be ignored by the git repository
+├── package.json                #Configuration file defining the dependencies required by this project
+├── README.md                   #This is it!
 
-### `npm start`
+```
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Styling Guide 
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+### SASS
+Sass is a CSS preprocessor, an extension of CSS that adds a lot of power and elegance to the basic language.
+Sass provides reusability by having a same set of variables, mixins and operators to be used by different components. 
 
-### `npm test`
+#### Variables
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+$breakpoint-small: 600px;
 
-### `npm run build`
+```
+#### Mixins, Extends
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Specificity 
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+### BEM 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Reset and Normalize 
 
-### `npm run eject`
+The following is done to reset and normalize the default gap defined by the different browsers thus causing CSS to be inconsistent between different browsers
+```
+*{
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Live-Reload
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Any changes to the sass file will trigger a re-compiled of sass to css file and reload the web application by itself. This is done by the following script by passing *--watch --recursive* to continuously monitor for changes. 
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+"watch-css": "npm run build-css && node-sass src/styles/sass -o src/styles/css --watch --recursive"
+```
