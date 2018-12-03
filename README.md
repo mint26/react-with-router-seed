@@ -105,7 +105,7 @@ border : 1px solid red;
     3. Author Option
         - The CSS that we create for a html page
         
-*!important* keyword can be used to override existing CSS declarations and skip to the front of the order of inheritance. 
+**!important** keyword can be used to override existing CSS declarations and skip to the front of the order of inheritance. 
 
 ### CSS Media queries 
 - Allows CSS to be applied in specific scenarios based on the properties of the user current browser. 
@@ -180,7 +180,7 @@ border : 1px solid red;
             }
         }
         ```
-- Media query can be used with LINK elements which allow you to separate your stylesheets for each platform and modularise your CSS
+- Media query can be used with *LINK* elements which allow you to separate your stylesheets for each platform and modularise your CSS
     - Mobile stylesheet is only retrieved if we are using a device screen and the browser width is less than or equal to 1000 pixels. The print stylesheet is only retrieved if we are attempting to print the web page. 
     ```
     <head>
@@ -227,16 +227,16 @@ header {
 }
 ```
 
-External font files can be linked in CSS to define your own font families using *@font-face* keyword and can use a wide variety of file formats to create fonts. 
+External font files can be linked in CSS to define your own font families using **@font-face** keyword and can use a wide variety of file formats to create fonts. 
 
-Font Type                               Browser Support
-===============================================================================
-OpenType Font (OTF)                     Most browsers 
-TrueType Font (TTF)                     Most browsers 
-Web Open Font Format (WOFF)             Most browsers 
-Web Open Font Format 2.0 (WOFF 2.0)     Not supported in IE 
-Embedded OpenType Fonts (EOT)           Supported only in IE 
-SVG Fonts (SVG)                         Supported only in Chrome and Opera 
+|Font Type                           |    Browser Support                     |
+|------------------------------------|:--------------------------------------:|
+|OpenType Font (OTF)                 |  Most browsers                         |
+|TrueType Font (TTF)                 |  Most browsers                         |
+|Web Open Font Format (WOFF)         |  Most browsers                         |
+|Web Open Font Format 2.0 (WOFF 2.0) |  Not supported in IE                   |
+|Embedded OpenType Fonts (EOT)       |  Supported only in IE                  |
+|SVG Fonts (SVG)                     |  Supported only in Chrome and Opera    |
 
 
 ### Specificity 
@@ -282,10 +282,10 @@ nav {
 ```
 
 ### Partials 
-A partial is a Sass file named with a leading underscore. You might name it something like _variables.scss. The underscore lets Sass know that the file is only a partial file and that it should not be generated into a CSS file. Sass partials are used with the @import directives.
+A partial is a Sass file named with a leading underscore. You might name it something like *_variables.scss*. The underscore lets Sass know that the file is only a partial file and that it should not be generated into a CSS file. Sass partials are used with the *@import* directives.
 
 ### Import
-CSS has an import option that lets you split your CSS into smaller, more maintainable portions. The only drawback is that each time you use @import in CSS. It creates another HTTP request. Sass builds on top of the current CSS @import but instead of requiring an HTTP request, Sass will take the file that you want to import and combine it with the file you are importing into so you can serve a single CSS file to the web browser.
+CSS has an import option that lets you split your CSS into smaller, more maintainable portions. The only drawback is that each time you use **@import** in CSS. It creates another HTTP request. Sass builds on top of the current CSS @import but instead of requiring an HTTP request, Sass will take the file that you want to import and combine it with the file you are importing into so you can serve a single CSS file to the web browser.
 
 ### Mixins
 A mixin lets you make groups of CSS declarations that you want to reuse throughout your site. You can even pass in values to make your mixin more flexible. A good use of a mixin is for vendor prefixes. 
@@ -300,7 +300,7 @@ A mixin lets you make groups of CSS declarations that you want to reuse througho
 .box { @include transform(rotate(30deg)); }
 ```
 ### Extends 
-Using @extend lets you share a set of CSS properties from one selector to another. It helps keep your Sass very DRY(Don't Repeat Yourself). 
+Using **@extend** lets you share a set of CSS properties from one selector to another. It helps keep your Sass very DRY(Don't Repeat Yourself). 
 
 ```
 /* This CSS will print because %message-shared is extended. */
