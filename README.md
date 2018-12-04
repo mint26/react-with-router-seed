@@ -49,7 +49,7 @@ Make sure you have install NodeJS and NPM.
         <source src="popopen.mp3" type="audio/mpeg" />
     </audio>
     ```
-    Or, handling unsupported browsers.=
+    Or, handling unsupported browsers
     ```
     <audio controls="controls">
         <source src="audio/music.ogg" type="audio/ogg" />
@@ -217,6 +217,8 @@ border : 1px solid red;
           <link rel="stylesheet" href="print.css" media="only print" />
         </head>
         ```
+        
+Note : Media queries don't add any importance or specificity to our selectors.
         
 ### CSS Fonts 
 Able to support multiple fonts including external font files. If unsure which fonts are installed on the user browser, multiple fonts can be specified with higher precedence on the fonts from the left and right until the browser finds a font that exists. 
