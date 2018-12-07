@@ -57,6 +57,36 @@ Make sure you have install NodeJS and NPM.
     </audio>
     ```
 
+### Responsive Images 
+
+#### Art Direction 
+The browser will render the first source if the width is less than 600px and render the second source (default source) if the width is more than 600px.
+
+```
+<picture class="footer__logo">
+    <source srcset="img/logo-green-small-1x.png 1x, img/logo-green-small-2x.png 2x"
+            media="(max-width:37.5em)">
+    <img srcset="img/logo-green-1x.png 1x, img/logo-green-2x.png 2x" alt="Full logo">
+</picture>
+```
+
+#### Density Switching 
+
+Source set defines a series of images that can be switched according to the screen density by stating the density descriptor after the image source path. 
+```
+    <img srcset="img/logo-green-1x.png 1x, img/logo-green-2x.png 2x" alt="Full logo">
+```
+
+#### Resolution Switching 
+Instead of using density descriptor, you can inform browser the size of the images by its width (eg: 300w = 300px) in the source set. The sizes attribute informs the browser the width of the image required for screens that fulfilled the particular media query condition. Based on the required width for different screens and the indicated width available for the images in the set, the browser will be able to render the best matched images according. To prevent cases when the browser does not support srcset (HTML5), thus src attribute is required as the fallback plan. 
+
+```
+    <img srcset="img/logo-green-1x.png 300w, img/logo-green-2x.png 1000w" 
+        sizes="(max-width: 900px) 20vw, (max-width:600px) 30vw, 300px"
+        src="img/logo-green-1x.png"
+        alt="Full logo">
+```
+
 ## CSS 
 A language that controls and allows one to define the look of an HTML document. It permits the separation between the content of the HTML document from the style of the HTML file. 
 
@@ -240,6 +270,85 @@ External font files can be linked in CSS to define your own font families using 
 |Embedded OpenType Fonts (EOT)       |  Supported only in IE                  |
 |SVG Fonts (SVG)                     |  Supported only in Chrome and Opera    |
 
+### CSS Assets - Scalable Vector Group (SVG)
+- Can generate SVG via https://icomoon.io/
+    - Download the zip file
+    - Copy the svg folder and the symbol-defs.svg file into the img folder 
+    - Rename the symbol-defs.svg to sprite.svg
+    - The icon can be accessible using the defined name preceding with a '#'
+
+```
+<svg class="search__icon">
+    <use xlink:href="img/sprite.svg#icon-magnifying-glass"></use>
+</svg>
+```
+
+### CSS @supports
+This css at-rule, **@suppports** lets you specify declarations that depend on a browser's support for one or more specific CSS features.
+
+```
+@supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)){
+    -webkit-clip-path: circle(50% at 50% 50%); 
+    clip-path: circle(50% at 50% 50%); 
+}
+```
+* Can I Use [https://caniuse.com/] allows you to check if this property is supported in the various browsers. 
+
+### CSS3
+
+#### Flexbox 
+- Flexbox is a new module in CSS3 that makes it easy to align elements to one another, in different directions and orders
+- The main idea behind flexbox is to give the container the ability to expand and to shrink elements to best use all the available space
+- Flexbox replaces float layouts, using less and more readable and logical code 
+- Flexbox completely changes the way that we build one-dimensional layout
+
+##### Flexbox container 
+- flex-direction : Direction of the items on the x axis
+- flex-wrap : Indicate to move the items to next row if overflow
+- justify-content : Indicate horizontal alignment on the x axis
+- align-items : Indicate vertical alignment on the x axis
+- align-content : Indicate the spread out of row on the y axis
+
+##### Flexbox item 
+- align-self : Simiar to align items but on the item level 
+- order 
+- flex-grow : Define how much item width can grow
+- flex-shrink : Define how much item width can shrink
+- flex-basis : Define the base of item width
+
+#### Grid
+- CSS Grid layout is a brand new module that brings a two-dimensional grid system to CSS for the first time 
+- It replaces float layouts, using less, and more readable and logical CSS and HTML
+- It works perfectly togerther with Flexbox, which is best to handle one-dimensional components and layouts
+- It completely changes the way that we envision and build two-dimensional layouts. 
+
+##### Grid container 
+- grid-template-rows
+- grid-template-columns
+- grid-template-areas
+
+- grid-row-gap
+- grid-column-gap 
+
+- justify-items
+- align-items
+- justify-content
+- align-content
+
+- grid-auto-rows
+- grid-auto-columns
+- grid-auto-flow
+
+#### Grid item 
+- grid-row-start
+- grid-row-end
+- grid-column-start
+- grid-column-end 
+
+- justify-self
+- align-self
+
+- order
 
 ### Specificity 
 
