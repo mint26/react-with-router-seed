@@ -7,39 +7,108 @@
 
 html {
   font-size: 62.5%; }
-
-@font-face {
-  font-family: "Lobster";
-  font-style: normal;
-  font-weight: 500;
-  src: url("assets/fonts/Lobster_Two-Regular.ttf") format("truetype"); }
+  @media screen and (max-width: 48em) {
+    html {
+      font-size: 71.4%; } }
 
 @font-face {
   font-family: "Fredericka";
   font-style: normal;
   font-weight: 500;
-  src: url("assets/fonts/Fredericka_the_Great/FrederickatheGreat-Regular.ttf") format("truetype"); }
+  src: url("/assets/fonts/Fredericka_the_Great/FrederickatheGreat-Regular.ttf") format("truetype"); }
 
 @font-face {
   font-family: "Libre";
   font-style: normal;
   font-weight: 500;
-  src: url("assets/fonts/Libre_Barcode_128/LibreBarcode128-Regular.ttf") format("truetype"); }
+  src: url("/assets/fonts/Libre_Barcode_128/LibreBarcode128-Regular.ttf") format("truetype"); }
+
+@font-face {
+  font-family: "Lobster";
+  font-style: normal;
+  font-weight: 500;
+  src: url("/assets/fonts/Lobster_Two/LobsterTwo-Regular.ttf") format("truetype"); }
 
 @font-face {
   font-family: "Lobster";
   font-style: italic;
   font-weight: 500;
-  src: url("assets/fonts/Lobster_Two-Italic.ttf") format("truetype"); }
+  src: url("/assets/fonts/Lobster_Two/Lobster_Two-Italic.ttf") format("truetype"); }
 
 @font-face {
   font-family: "Lobster";
   font-style: normal;
   font-weight: 700;
-  src: url("assets/fonts/Lobster_Two-Bold.ttf") format("truetype"); }
+  src: url("/assets/fonts/Lobster_Two/Lobster_Two-Bold.ttf") format("truetype"); }
 
 @font-face {
   font-family: "Lobster";
   font-style: italic;
   font-weight: 700;
-  src: url("assets/fonts/Lobster_Two-BoldItalic.ttf") format("truetype"); }
+  src: url("/assets/fonts/Lobster_Two/Lobster_Two-BoldItalic.ttf") format("truetype"); }
+
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-10rem); }
+  80% {
+    transform: translateX(1rem); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(10rem); }
+  80% {
+    transform: translateX(-1rem); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(3rem); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
+
+.row {
+  width: 100%;
+  margin: 0 auto; }
+  .row::after {
+    content: "";
+    display: table;
+    clear: both; }
+  .row:not(:last-child) {
+    margin-bottom: 8rem; }
+  .row [class^="col-"] {
+    float: left;
+    height: 20px;
+    padding-right: 6rem; }
+    .row [class^="col-"] span {
+      display: block;
+      width: 100%;
+      background-color: #c0dfd9; }
+  .row .col-1 {
+    width: 10%; }
+  .row .col-2 {
+    width: 20%; }
+  .row .col-3 {
+    width: 30%; }
+  .row .col-4 {
+    width: 40%; }
+  .row .col-5 {
+    width: 50%; }
+  .row .col-6 {
+    width: 60%; }
+  .row .col-7 {
+    width: 70%; }
+  .row .col-8 {
+    width: 80%; }
+  .row .col-9 {
+    width: 90%; }
+  .row .col-10 {
+    width: 100%; }

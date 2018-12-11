@@ -9,4 +9,8 @@
 html{
     //1rem = 16px
     font-size: 62.5%;
+
+    @include desktop-respond-to(small){
+        font-size: 71.4%;
+    }
 }
