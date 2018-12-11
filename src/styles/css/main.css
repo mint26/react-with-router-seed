@@ -1,4 +1,45 @@
-* {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box; }
+
+html {
+  font-size: 62.5%; }
+
+@font-face {
+  font-family: "Lobster";
+  font-style: normal;
+  font-weight: 500;
+  src: url("assets/fonts/Lobster_Two-Regular.ttf") format("truetype"); }
+
+@font-face {
+  font-family: "Fredericka";
+  font-style: normal;
+  font-weight: 500;
+  src: url("assets/fonts/Fredericka_the_Great/FrederickatheGreat-Regular.ttf") format("truetype"); }
+
+@font-face {
+  font-family: "Libre";
+  font-style: normal;
+  font-weight: 500;
+  src: url("assets/fonts/Libre_Barcode_128/LibreBarcode128-Regular.ttf") format("truetype"); }
+
+@font-face {
+  font-family: "Lobster";
+  font-style: italic;
+  font-weight: 500;
+  src: url("assets/fonts/Lobster_Two-Italic.ttf") format("truetype"); }
+
+@font-face {
+  font-family: "Lobster";
+  font-style: normal;
+  font-weight: 700;
+  src: url("assets/fonts/Lobster_Two-Bold.ttf") format("truetype"); }
+
+@font-face {
+  font-family: "Lobster";
+  font-style: italic;
+  font-weight: 700;
+  src: url("assets/fonts/Lobster_Two-BoldItalic.ttf") format("truetype"); }
