@@ -16,12 +16,25 @@ class Header extends Component {
                     }): [];
         return (
             <section className="header">
-                <div className="header__top-row">
-                    <div className="header__logo">LOGO</div>
-                    <ItemList items={items} listCss="header__navigation" itemCss="header__navigation-item"/>
+                <div className="header__top">
+                    <div className="header__top-mobile-nav">
+                        <i className="fas fa-bars"></i>
+                    </div>
+                    <div className="header__top-logo">
+                        <i className="fab fa-accusoft"></i>
+                    </div>
+                    <ItemList items={items} listCss="header__top-navigation" itemCss="header__top-navigation-item"/>
                 </div>
                 <div className="header__banner">
-                    
+                    <div className="header__banner-text">
+                        <h1>Title is here</h1>
+                        <h3>Sub text is here</h3>
+                        <p>Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups</p>
+                    </div>
+                    <div className="header__banner-pic">
+                        <img src="/assets/images/batman.png" alt="banner-batman"/>
+                        <img src="/assets/images/deadpool.png" alt="banner-deadpool"/>
+                    </div>
                 </div>
             </section>
         );

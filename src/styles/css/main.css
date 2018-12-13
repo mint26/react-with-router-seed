@@ -6,10 +6,26 @@
   box-sizing: border-box; }
 
 html {
-  font-size: 62.5%; }
+  font-size: 100%;
+  font-family: 'Lobster'; }
   @media screen and (max-width: 48em) {
     html {
       font-size: 71.4%; } }
+  html h1 {
+    font-size: 250%;
+    font-weight: 700; }
+  html h2 {
+    font-size: 187.5%;
+    font-weight: 700; }
+  html h3 {
+    font-size: 125%;
+    font-weight: 700; }
+
+.hide {
+  display: none; }
+
+.show {
+  display: inline-block; }
 
 @font-face {
   font-family: "Fredericka";
@@ -33,19 +49,19 @@ html {
   font-family: "Lobster";
   font-style: italic;
   font-weight: 500;
-  src: url("/assets/fonts/Lobster_Two/Lobster_Two-Italic.ttf") format("truetype"); }
+  src: url("/assets/fonts/Lobster_Two/LobsterTwo-Italic.ttf") format("truetype"); }
 
 @font-face {
   font-family: "Lobster";
   font-style: normal;
   font-weight: 700;
-  src: url("/assets/fonts/Lobster_Two/Lobster_Two-Bold.ttf") format("truetype"); }
+  src: url("/assets/fonts/Lobster_Two/LobsterTwo-Bold.ttf") format("truetype"); }
 
 @font-face {
   font-family: "Lobster";
   font-style: italic;
   font-weight: 700;
-  src: url("/assets/fonts/Lobster_Two/Lobster_Two-BoldItalic.ttf") format("truetype"); }
+  src: url("/assets/fonts/Lobster_Two/LobsterTwo-BoldItalic.ttf") format("truetype"); }
 
 @keyframes moveInLeft {
   0% {
@@ -75,10 +91,82 @@ html {
     opacity: 1;
     transform: translate(0); } }
 
-.header__navigation-item {
-  list-style: none;
-  border: 1px solid #c0dfd9;
-  display: inline-block; }
+.header {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #c0dfd9; }
+  .header__top {
+    color: #3b3a36;
+    position: sticky;
+    top: 0;
+    padding: 0 6rem;
+    z-index: 1; }
+    .header__top-mobile-nav {
+      display: none; }
+    .header__top-logo {
+      display: inline-block;
+      margin: 1rem 1rem; }
+      .header__top-logo i {
+        font-size: 2rem; }
+    .header__top-navigation {
+      width: 70%;
+      float: right;
+      display: flex;
+      justify-content: flex-end; }
+      .header__top-navigation-item {
+        padding: 1rem 2rem;
+        list-style: none;
+        float: left;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        cursor: pointer; }
+        .header__top-navigation-item a {
+          text-decoration: none;
+          color: inherit; }
+        .header__top-navigation-item:hover a {
+          color: #ffffff; }
+  .header__banner {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0 6rem;
+    display: flex; }
+    .header__banner-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 3rem; }
+      .header__banner-text h1 {
+        color: #ffffff; }
+    .header__banner-pic {
+      text-align: right;
+      padding-top: 10%; }
+      .header__banner-pic img {
+        width: 50%;
+        height: 90%; }
+  @media screen and (max-width: 48em) {
+    .header__top {
+      padding: 0;
+      background-color: #e9ece5; }
+      .header__top-logo {
+        width: 80%;
+        text-align: center; }
+      .header__top-mobile-nav {
+        padding: 1rem 1rem;
+        display: inline-block; }
+        .header__top-mobile-nav i {
+          font-size: 2rem; }
+      .header__top-navigation {
+        width: 100%;
+        display: flex;
+        flex-direction: column; }
+        .header__top-navigation-item {
+          display: block; }
+    .header__banner {
+      padding: 0; } }
 
 .footer__navigation-item {
   list-style: none;

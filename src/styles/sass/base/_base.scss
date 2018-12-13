@@ -8,9 +8,33 @@
 
 html{
     //1rem = 16px
-    font-size: 62.5%;
-
+    //formula : (font size you want) / 16 x 100%
+    font-size: 100%;
+    font-family: 'Lobster'; 
     @include desktop-respond-to(small){
         font-size: 71.4%;
     }
+
+    h1{
+        font-size: 250%;
+        font-weight: 700; 
+    }
+
+    h2{
+        font-size:187.5%; 
+        font-weight: 700; 
+    }
+
+    h3{
+        font-size: 125%;
+        font-weight: 700; 
+    }
+}
+
+.hide{
+    display: none;
+}
+
+.show{
+    display: inline-block; 
 }
