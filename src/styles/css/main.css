@@ -75,40 +75,15 @@ html {
     opacity: 1;
     transform: translate(0); } }
 
-.row {
-  width: 100%;
-  margin: 0 auto; }
-  .row::after {
-    content: "";
-    display: table;
-    clear: both; }
-  .row:not(:last-child) {
-    margin-bottom: 8rem; }
-  .row [class^="col-"] {
-    float: left;
-    height: 20px;
-    padding-right: 6rem; }
-    .row [class^="col-"] span {
-      display: block;
-      width: 100%;
-      background-color: #c0dfd9; }
-  .row .col-1 {
-    width: 10%; }
-  .row .col-2 {
-    width: 20%; }
-  .row .col-3 {
-    width: 30%; }
-  .row .col-4 {
-    width: 40%; }
-  .row .col-5 {
-    width: 50%; }
-  .row .col-6 {
-    width: 60%; }
-  .row .col-7 {
-    width: 70%; }
-  .row .col-8 {
-    width: 80%; }
-  .row .col-9 {
-    width: 90%; }
-  .row .col-10 {
-    width: 100%; }
+.header__navigation-item {
+  list-style: none;
+  border: 1px solid #c0dfd9;
+  display: inline-block; }
+
+.footer__navigation-item {
+  list-style: none;
+  border: 1px solid #c0dfd9; }
+
+.home {
+  display: flex;
+  flex-direction: column; }

@@ -1,0 +1,28 @@
+{
+    "content": {
+        "headerNavigations": [
+            {
+                "name" : "Home", 
+                "link" : "#home"
+            },
+            {
+                "name" : "About Me", 
+                "link" : "#aboutme"
+            },
+            {
+                "name" : "Gallery", 
+                "link" : "#gallery"
+            },
+            {
+                "name" : "Contact", 
+                "link" : "#contact"
+            }
+        ], 
+        "footerNavigations" :[
+            {
+                "name" : "Sitemap",
+                "link" : "#sitemap"
+            }
+        ]
+    }
+}
