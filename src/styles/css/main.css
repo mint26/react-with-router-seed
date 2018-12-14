@@ -127,6 +127,8 @@ html {
           color: inherit; }
         .header__top-navigation-item:hover a {
           color: #ffffff; }
+    .header__top-hide {
+      display: inline-block; }
   .header__banner {
     position: absolute;
     top: 0;
@@ -165,8 +167,15 @@ html {
         flex-direction: column; }
         .header__top-navigation-item {
           display: block; }
+      .header__top-hide {
+        display: none; }
     .header__banner {
-      padding: 0; } }
+      padding: 0;
+      display: block; }
+      .header__banner-text {
+        height: 100%; }
+      .header__banner-pic {
+        display: none; } }
 
 .footer__navigation-item {
   list-style: none;

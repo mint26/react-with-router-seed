@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Link changes the class when hovered 1`] = `
+<ul
+  className="test-list"
+>
+  <li
+    className="test-item"
+  >
+    &lt;span&gt;hello&lt;/span&gt;
+  </li>
+  <li
+    className="test-item"
+  >
+    &lt;span&gt;hello 2&lt;/span&gt;
+  </li>
+  <li
+    className="test-item"
+  >
+    &lt;span&gt;hello 3&lt;/span&gt;
+  </li>
+</ul>
+`;

@@ -48,6 +48,10 @@
                 }
             }
         }
+
+        &-hide{
+            display: inline-block; 
+        }
     }
 
     &__banner{
@@ -102,10 +106,23 @@
                     display: block; 
                 }
             }
+
+            &-hide{
+                display: none; 
+            }
         }
 
         &__banner{
             padding: 0; 
+            display:block; 
+            
+            &-text{
+                height:100%;
+            }
+
+            &-pic{
+                display: none; 
+            }
         }
     }
 }

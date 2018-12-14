@@ -3,6 +3,16 @@ import ItemList from '../../components/ItemList';
 
 class Header extends Component {
     
+    constructor(props){
+        super(props); 
+        this.state = {
+            mobileNavState : false
+        }
+    }
+
+    mobileNavHandler = () => {
+        this.setState({ mobileNavState : !this.state.mobileNavState }); 
+    }
     render(){
         let items = this.props.navigationItems && this.props.navigationItems.length > 0 ? 
                     this.props.navigationItems.map(item => {
@@ -14,16 +24,19 @@ class Header extends Component {
                                         )
                         };
                     }): [];
+
+        let headerNavHide = !this.state.mobileNavState ? "header__top-hide" : ""; 
+        
         return (
             <section className="header">
                 <div className="header__top">
                     <div className="header__top-mobile-nav">
-                        <i className="fas fa-bars"></i>
+                        <i className="fas fa-bars" onClick={this.mobileNavHandler}></i>
                     </div>
                     <div className="header__top-logo">
                         <i className="fab fa-accusoft"></i>
                     </div>
-                    <ItemList items={items} listCss="header__top-navigation" itemCss="header__top-navigation-item"/>
+                    <ItemList items={items} listCss={`header__top-navigation ${headerNavHide}`} itemCss="header__top-navigation-item"/>
                 </div>
                 <div className="header__banner">
                     <div className="header__banner-text">
