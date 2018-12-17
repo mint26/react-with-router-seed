@@ -18,6 +18,5 @@ test('Link changes the class when hovered', () => {
     <ItemList items={dummyItems} itemCss="test-item" listCss="test-list"/>,
   );
   let tree = component.toJSON();
-  console.log(tree);
   expect(tree).toMatchSnapshot();
 });
