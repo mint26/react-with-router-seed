@@ -489,3 +489,372 @@ Any changes to the sass file will trigger a re-compiled of sass to css file and 
 ```
 "watch-css": "npm run build-css && node-sass src/styles/sass -o src/styles/css --watch --recursive"
 ```
+
+### Testing Using Jest
+#### Testing Setup
+
+By default, create-react-app command line included Jest as the tool for testing. However, in order to use Snapshot in Jest, you need to install additional dependency, *react-test-renderer* , to render the snapshot for comparison. If your project is not created via the *create-react-app* command line, you can also use the snapshot testing features by adding the required dependencies. Please refer to [this link](https://jestjs.io/docs/en/tutorial-react) for more setup information. 
+
+Run the following command line to get the tests running. 
+
+```
+npm test
+```
+
+#### Matchers
+The so called 'matchers' in Jest are used to test the output values of the particular functions. Below are the commonly used matchers method and more methods could be found via [this link] (https://jestjs.io/docs/en/expect). 
+
+- Comparing numbers
+```
+test('two plus two', () => {
+  const value = 2 + 2;
+  expect(value).toBeGreaterThan(3);
+  expect(value).toBeGreaterThanOrEqual(3.5);
+  expect(value).toBeLessThan(5);
+  expect(value).toBeLessThanOrEqual(4.5);
+
+  // toBe and toEqual are equivalent for numbers
+  expect(value).toBe(4);
+  expect(value).toEqual(4);
+});
+```
+
+For floating point number, use *toBeCloseTo* instead of *toEqual* because the test shouldn't be too reliance to tiny rounding error. 
+
+```
+test('adding floating point numbers', () => {
+  const value = 0.1 + 0.2;
+  //expect(value).toBe(0.3);           This won't work because of rounding error
+  expect(value).toBeCloseTo(0.3); // This works.
+});
+```
+
+
+
+- Comparing objects
+```
+test('object assignment', () => {
+  const data = {one: 1};
+  data['two'] = 2;
+  expect(data).toEqual({one: 1, two: 2});
+});
+```
+
+- Comparing boolean
+```
+test('null', () => {
+  const n = null;
+  expect(n).toBeNull();
+  expect(n).toBeDefined();
+  expect(n).not.toBeUndefined();
+  expect(n).not.toBeTruthy();
+  expect(n).toBeFalsy();
+});
+
+test('zero', () => {
+  const z = 0;
+  expect(z).not.toBeNull();
+  expect(z).toBeDefined();
+  expect(z).not.toBeUndefined();
+  expect(z).not.toBeTruthy();
+  expect(z).toBeFalsy();
+});
+```
+
+- Comparing string 
+Regular Expression can be used to test string 
+
+```
+test('there is no I in team', () => {
+  expect('team').not.toMatch(/I/);
+});
+
+test('but there is a "stop" in Christoph', () => {
+  expect('Christoph').toMatch(/stop/);
+});
+```
+
+- Comparing Array 
+
+```
+const shoppingList = [
+  'diapers',
+  'kleenex',
+  'trash bags',
+  'paper towels',
+  'beer',
+];
+
+test('the shopping list has beer on it', () => {
+  expect(shoppingList).toContain('beer');
+})
+```
+
+- Comparing Exception 
+
+```
+function compileAndroidCode() {
+  throw new ConfigError('you are using the wrong JDK');
+}
+
+test('compiling android goes as expected', () => {
+  expect(compileAndroidCode).toThrow();
+  expect(compileAndroidCode).toThrow(ConfigError);
+
+  // You can also use the exact error message or a regexp
+  expect(compileAndroidCode).toThrow('you are using the wrong JDK');
+  expect(compileAndroidCode).toThrow(/JDK/);
+});
+```
+
+#### Testing Asynchronous Code 
+
+- Callbacks
+**DON'T** do the following as the test will finish once fetchData is being invoked and the test will finish before the callback is being executed. 
+
+```
+test('the data is peanut butter', () => {
+  function callback(data) {
+    expect(data).toBe('peanut butter');
+  }
+
+  fetchData(callback);
+});
+``` 
+
+To fix the above solution, the *done()* method can be included in the callback function so the test runner will wait till the *done()* method to be called before declaring it to be finished. 
+
+```
+test('the data is peanut butter', done => {
+  function callback(data) {
+    expect(data).toBe('peanut butter');
+    done();
+  }
+
+  fetchData(callback);
+});
+```
+
+- Promises
+
+Note to add the *return* keyword to pass the control back to the outer function at the end. 
+```
+test('the data is peanut butter', () => {
+  expect.assertions(1);
+  return fetchData().then(data => {
+    expect(data).toBe('peanut butter');
+  });
+});
+
+test('the fetch fails with an error', () => {
+  expect.assertions(1);
+  return fetchData().catch(e => expect(e).toMatch('error'));
+});
+```
+
+You can also use the *resolve/reject* function. 
+
+```
+test('the data is peanut butter', () => {
+  expect.assertions(1);
+  return expect(fetchData()).resolves.toBe('peanut butter');
+});
+
+test('the fetch fails with an error', () => {
+  expect.assertions(1);
+  return expect(fetchData()).rejects.toMatch('error');
+});
+```
+
+Alternatively, you can use *async/await* instead of a promise in the testing. 
+
+```
+test('the data is peanut butter', async () => {
+  expect.assertions(1);
+  const data = await fetchData();
+  expect(data).toBe('peanut butter');
+});
+
+test('the fetch fails with an error', async () => {
+  expect.assertions(1);
+  try {
+    await fetchData();
+  } catch (e) {
+    expect(e).toMatch('error');
+  }
+});
+```
+
+#### Setup and Teardown 
+
+##### Methods 
+
+- BeforeEach / AfterEach
+    - Method invokes before/after each test 
+    - Can used to support promises by adding *return* keyword when invoking the function
+
+```
+beforeEach(() => {
+  initializeCityDatabase();
+});
+
+afterEach(() => {
+  clearCityDatabase();
+});
+
+test('city database has Vienna', () => {
+  expect(isCity('Vienna')).toBeTruthy();
+});
+
+test('city database has San Juan', () => {
+  expect(isCity('San Juan')).toBeTruthy();
+});
+```
+
+- BeforeAll / AfterAll
+    - Method invokes before/after all tests
+
+```
+beforeAll(() => {
+  return initializeCityDatabase();
+});
+
+afterAll(() => {
+  return clearCityDatabase();
+});
+
+test('city database has Vienna', () => {
+  expect(isCity('Vienna')).toBeTruthy();
+});
+
+test('city database has San Juan', () => {
+  expect(isCity('San Juan')).toBeTruthy();
+});
+```
+
+##### Scoping 
+By default, the before and after blocks apply to every test in a file. You can also group tests together using a describe block. When they are inside a describe block, the before and after blocks only apply to the tests within that describe block
+
+The describe blocks will be first executed before the test blocks. 
+
+```
+describe('outer', () => {
+  console.log('describe outer-a');
+
+  describe('describe inner 1', () => {
+    console.log('describe inner 1');
+    test('test 1', () => {
+      console.log('test for describe inner 1');
+      expect(true).toEqual(true);
+    });
+  });
+
+  console.log('describe outer-b');
+
+  test('test 1', () => {
+    console.log('test for describe outer');
+    expect(true).toEqual(true);
+  });
+
+  describe('describe inner 2', () => {
+    console.log('describe inner 2');
+    test('test for describe inner 2', () => {
+      console.log('test for describe inner 2');
+      expect(false).toEqual(false);
+    });
+  });
+
+  console.log('describe outer-c');
+});
+
+// describe outer-a
+// describe inner 1
+// describe outer-b
+// describe inner 2
+// describe outer-c
+// test for describe inner 1
+// test for describe outer
+// test for describe inner 2
+```
+
+#### Mocking
+Mock functions make it easy to test the links between code by erasing the actual implementation of a function, capturing calls to the function (and the parameters passed in those calls), capturing instances of constructor functions when instantiated with new, and allowing test-time configuration of return values.
+
+There are two ways to mock functions: Either by creating a mock function to use in test code, or writing a manual mock to override a module dependency.
+
+##### Mock Function
+
+```
+function forEach(items, callback) {
+  for (let index = 0; index < items.length; index++) {
+    callback(items[index]);
+  }
+}
+
+const mockCallback = jest.fn(x => 42 + x);
+forEach([0, 1], mockCallback);
+
+// The mock function is called twice
+expect(mockCallback.mock.calls.length).toBe(2);
+
+// The first argument of the first call to the function was 0
+expect(mockCallback.mock.calls[0][0]).toBe(0);
+```
+
+- All mock functions have this special .mock property, which is where data about how the function has been called and what the function returned is kept. The .mock property also tracks the value of this for each call, so it is possible to inspect this as well
+
+```
+// The function was called exactly once
+expect(someMockFunction.mock.calls.length).toBe(1);
+
+// The first arg of the first call to the function was 'first arg'
+expect(someMockFunction.mock.calls[0][0]).toBe('first arg');
+
+// The second arg of the first call to the function was 'second arg'
+expect(someMockFunction.mock.calls[0][1]).toBe('second arg');
+
+// The return value of the first call to the function was 'return value'
+expect(someMockFunction.mock.results[0].value).toBe('return value');
+
+// This function was instantiated exactly twice
+expect(someMockFunction.mock.instances.length).toBe(2);
+
+// The object returned by the first instantiation of this function
+// had a `name` property whose value was set to 'test'
+expect(someMockFunction.mock.instances[0].name).toEqual('test');
+```
+
+- Return values of a function can be mocked 
+
+```
+const myMock = jest.fn();
+console.log(myMock());
+// > undefined
+
+myMock
+  .mockReturnValueOnce(10)
+  .mockReturnValueOnce('x')
+  .mockReturnValue(true);
+```
+
+- Mocking Modules
+
+Suppose we have a module dependency using axios in the function, we can mock the axios module to test the method without actually hitting the API.
+
+```
+import axios from 'axios';
+import Users from './users';
+
+jest.mock('axios');
+
+test('should fetch users', () => {
+  const resp = {data: [{name: 'Bob'}]};
+  axios.get.mockResolvedValue(resp);
+
+  // or you could use the following depending on your use case:
+  // axios.get.mockImplementation(() => Promise.resolve(resp))
+
+  return Users.all().then(users => expect(users).toEqual(resp.data));
+});
+```
+
